@@ -15,9 +15,6 @@ import java.security.MessageDigest
 class MarbleApi {
 
     companion object {
-        private const val publicKey = "64b1ed0ca029c950e4198574e92cd3ac"
-        private const val privateKey = "16f6da42fde1131c83c81d2076b25bb4e9c87df1"
-
         private const val BASE_URL = "https://gateway.marvel.com:443/"
 
         private fun getApiService(): MarbleApiInterface {
@@ -37,7 +34,7 @@ class MarbleApi {
                 val message = "$ts${BuildConfig.MARBLE_API_PRIVATE_KEY}${BuildConfig.MARBLE_API_PUBLIC_KEY}"
                 MarbleApiKey(
                     ts = ts,
-                    apikey = publicKey,
+                    apikey = BuildConfig.MARBLE_API_PUBLIC_KEY,
                     hash = BigInteger(1, md.digest(message.toByteArray())).toString(16)
                         .padStart(32, '0'),
                 )
